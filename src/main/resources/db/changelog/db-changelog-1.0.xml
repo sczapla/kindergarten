@@ -1,0 +1,183 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<changeSet author="twojcicki (generated)" id="1496836749281-1">
+		<createTable tableName="rola">
+			<column name="nazwa_roli" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-2">
+		<createTable tableName="rola_uzytkownika">
+			<column name="id_uzytkownika" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+			<column name="id_roli" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-3">
+		<createTable tableName="uprawnienie">
+			<column name="nazwa_uprawnienia" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+			<column name="komponent" type="VARCHAR(64)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-4">
+		<createTable tableName="uprawnienie_roli">
+			<column name="id_roli" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+			<column name="id_uprawnienia" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-5">
+		<createTable tableName="uzytkownik">
+			<column name="email" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+			<column name="czas_rejestracji" type="TIMESTAMP WITHOUT TIME ZONE">
+				<constraints nullable="false" />
+			</column>
+			<column name="haslo" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+			<column name="imie" type="VARCHAR(64)">
+				<constraints nullable="false" />
+			</column>
+			<column name="nazwisko" type="VARCHAR(64)" />
+			<column name="odblokowany" type="BOOLEAN" />
+			<column name="opis" type="VARCHAR(512)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-6">
+		<addPrimaryKey columnNames="id_uzytkownika, id_roli"
+			tableName="rola_uzytkownika" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-7">
+		<addPrimaryKey columnNames="id_roli, id_uprawnienia"
+			tableName="uprawnienie_roli" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-8">
+		<addPrimaryKey columnNames="nazwa_roli" constraintName="rolaPK"
+			tableName="rola" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-9">
+		<addPrimaryKey columnNames="nazwa_uprawnienia"
+			constraintName="uprawnieniePK" tableName="uprawnienie" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-10">
+		<addPrimaryKey columnNames="email" constraintName="uzytkownikPK"
+			tableName="uzytkownik" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-11">
+		<addUniqueConstraint columnNames="nazwa_roli"
+			constraintName="UC_ROLANAZWA_ROLI_COL" tableName="rola" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-12">
+		<addUniqueConstraint columnNames="nazwa_uprawnienia"
+			constraintName="UC_UPRAWNIENIENAZWA_UPRAWNIENIA_COL" tableName="uprawnienie" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-13">
+		<addUniqueConstraint columnNames="email"
+			constraintName="UC_UZYTKOWNIKEMAIL_COL" tableName="uzytkownik" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-14">
+		<addForeignKeyConstraint baseColumnNames="id_uprawnienia"
+			baseTableName="uprawnienie_roli" constraintName="FK147f69fd117ecr45axckr179f"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="nazwa_uprawnienia"
+			referencedTableName="uprawnienie" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-15">
+		<addForeignKeyConstraint baseColumnNames="id_roli"
+			baseTableName="uprawnienie_roli" constraintName="FK39ny7m59s8talip42klyaag4b"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="nazwa_roli"
+			referencedTableName="rola" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-16">
+		<addForeignKeyConstraint baseColumnNames="id_uzytkownika"
+			baseTableName="rola_uzytkownika" constraintName="FKewgpqvhwui9halce87xxei7ia"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="email"
+			referencedTableName="uzytkownik" />
+	</changeSet>
+	<changeSet author="twojcicki (generated)" id="1496836749281-17">
+		<addForeignKeyConstraint baseColumnNames="id_roli"
+			baseTableName="rola_uzytkownika" constraintName="FKkrx9lie0jpkthldh875r9ohoi"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="nazwa_roli"
+			referencedTableName="rola" />
+	</changeSet>
+
+	<changeSet id="1496828081377-22" author="twojcicki">
+		<insert schemaName="public" tableName="rola">
+			<column name="nazwa_roli" value="ROLE_ADMIN" />
+		</insert>
+		<insert schemaName="public" tableName="rola">
+			<column name="nazwa_roli" value="ROLE_USER" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie">
+			<column name="nazwa_uprawnienia" value="PERM_LOGIN" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie">
+			<column name="nazwa_uprawnienia" value="PERM_VIEW" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie">
+			<column name="nazwa_uprawnienia" value="PERM_EDIT" />
+		</insert>
+		<insert schemaName="public" tableName="uzytkownik">
+			<column name="email" value="admin@admin.pl" />
+			<column name="czas_rejestracji" valueDate="2000-01-01T00:00:00" />
+			<column name="haslo"
+				value="$2a$10$WvqLf7dCBOhAG5JCc6nomOc3HS0Mu6hhbLurpSHA6n0Ck/I/8RVky" />
+			<column name="imie" value="adminName" />
+			<column name="nazwisko" value="adminSurname" />
+			<column name="odblokowany" valueBoolean="true" />
+			<column name="opis" value="admin test" />
+		</insert>
+		<insert schemaName="public" tableName="uzytkownik">
+			<column name="email" value="user@user.pl" />
+			<column name="czas_rejestracji" valueDate="2000-01-01T00:00:00" />
+			<column name="haslo"
+				value="$2a$10$dw18zJFma7v0RxLKDultrOLLtt113OWAWgzZtR4kZxmjgfXc3fKoS" />
+			<column name="imie" value="userName" />
+			<column name="nazwisko" value="userSurname" />
+			<column name="odblokowany" valueBoolean="true" />
+			<column name="opis" value="user test" />
+		</insert>
+	</changeSet>
+	<changeSet id="1496828081377-23" author="twojcicki">
+		<insert schemaName="public" tableName="rola_uzytkownika">
+			<column name="id_uzytkownika" value="admin@admin.pl" />
+			<column name="id_roli" value="ROLE_ADMIN" />
+		</insert>
+		<insert schemaName="public" tableName="rola_uzytkownika">
+			<column name="id_uzytkownika" value="user@user.pl" />
+			<column name="id_roli" value="ROLE_USER" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie_roli">
+			<column name="id_uprawnienia" value="PERM_VIEW" />
+			<column name="id_roli" value="ROLE_ADMIN" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie_roli">
+			<column name="id_uprawnienia" value="PERM_LOGIN" />
+			<column name="id_roli" value="ROLE_ADMIN" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie_roli">
+			<column name="id_uprawnienia" value="PERM_EDIT" />
+			<column name="id_roli" value="ROLE_ADMIN" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie_roli">
+			<column name="id_uprawnienia" value="PERM_VIEW" />
+			<column name="id_roli" value="ROLE_USER" />
+		</insert>
+		<insert schemaName="public" tableName="uprawnienie_roli">
+			<column name="id_uprawnienia" value="PERM_LOGIN" />
+			<column name="id_roli" value="ROLE_USER" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>
