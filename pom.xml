@@ -76,12 +76,12 @@
         <dependency>
             <groupId>com.github.adminfaces</groupId>
             <artifactId>admin-template</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0-RC6</version>
         </dependency>
         <dependency>
             <groupId>com.github.adminfaces</groupId>
             <artifactId>admin-theme</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0-RC6</version>
         </dependency>
 		
         </dependencies>
@@ -145,9 +145,9 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>test</id>
+			<id>openshift</id>
 			<properties>
-				<build.profile.id>test</build.profile.id>
+				<build.profile.id>openshift</build.profile.id>
 			</properties>
 		</profile>
 		<profile>
