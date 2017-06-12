@@ -107,9 +107,6 @@
 						<goals>
 							<goal>repackage</goal>
 						</goals>
-						<configuration>
-							<executable>true</executable>
-						</configuration>
 					</execution>
 				</executions>
 				
