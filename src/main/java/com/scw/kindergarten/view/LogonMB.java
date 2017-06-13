@@ -7,11 +7,15 @@ import org.springframework.stereotype.Component;
 
 @Component("logonMB")
 @Scope("session")
-public class LogonMB
-{
-  public String getCurrentUser()
-  {
-    User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    return user.getUsername();
-  }
+public class LogonMB {
+	public String getCurrentUser() {
+		String userName = "";
+		Object contextUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (contextUser instanceof User) {
+			userName = ((User) contextUser).getUsername();
+		} else if (contextUser instanceof String) {
+			userName = (String) contextUser;
+		}
+		return userName;
+	}
 }
