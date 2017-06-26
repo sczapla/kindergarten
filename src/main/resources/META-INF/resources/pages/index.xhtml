@@ -1,43 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/pages/templates/template.xhtml"
-                xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-        <ui:define name="head-end">
-        <style type="text/css">
-            .ui-datatable .ui-datatable-header {
-                text-align: right !important;
-            }
+	<ui:define name="head-end">
+		<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	text-align: right !important;
+}
+</style>
+	</ui:define>
 
-        </style>
-    </ui:define>
-
-    <ui:define name="title">
+	<ui:define name="title">
         #{msg['page.index.title']}
     </ui:define>
 
-    <ui:define name="description">
+	<ui:define name="description">
         #{msg['page.index.description']}
     </ui:define>
 
-    <ui:define name="body">
-    	<h3 style="margin-top: 0">Wydarzenia</h3>
-    	<p:timeline id="timelineFirst" value="#{linkedTimelinesView.modelFirst}" var="task" 
-                height="250px" widgetVar="timelineFirstWdgt">  
-        <p:ajax event="rangechange" oncomplete="onrangechange1()"/>  
-        <p:ajax event="select" listener="#{linkedTimelinesView.onSelect}"/>  
- 
-        <h:panelGroup layout="block" rendered="#{not task.period}" style="padding-bottom:5px">  
-            <h:outputText value="#{task.title}"/>  
-        </h:panelGroup>  
-        <p:graphicImage library="demo" name="#{task.imagePath}"/>  
-        <h:panelGroup rendered="#{task.period}" style="padding:8px">  
-            <h:outputText value="#{task.title}"/>  
-        </h:panelGroup>  
-    </p:timeline>
-    </ui:define>
+	<ui:define name="body">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box">
+						<span class="info-box-icon bg-aqua"><i
+							class="fa fa-money"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Płatność</span> <span
+								class="info-box-number">420 zł</span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box">
+						<span class="info-box-icon bg-red"><i
+							class="fa fa-envelope"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Wiadomości</span> <span
+								class="info-box-number">23</span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+
+				<!-- fix for small devices only -->
+				<div class="clearfix visible-sm-block"></div>
+
+				<!-- /.col -->
+
+				<p:timeline id="timelineFirst"
+					value="#{linkedTimelinesView.modelFirst}" var="task" height="250px"
+					widgetVar="timelineFirstWdgt">
+					<p:ajax event="rangechange" oncomplete="onrangechange1()" />
+					<p:ajax event="select" listener="#{linkedTimelinesView.onSelect}" />
+
+					<h:panelGroup layout="block" rendered="#{not task.period}"
+						style="padding-bottom:5px">
+						<h:outputText value="#{task.title}" />
+					</h:panelGroup>
+					<p:graphicImage library="demo" name="#{task.imagePath}" />
+					<h:panelGroup rendered="#{task.period}" style="padding:8px">
+						<h:outputText value="#{task.title}" />
+					</h:panelGroup>
+				</p:timeline>
+
+				</div>
+		</div>
+		
+				<div class="ui-g-12">
+                    <p:panel header="Wiadomości" styleClass="card no-border">
+				<p:dataTable id="basicDT" var="messsage" value="#{messageView.messages}">
+					<p:column headerText="Od">
+						<h:outputText value="#{messsage.from}" />
+					</p:column>
+					<p:column headerText="Temat">
+						<h:outputText value="#{messsage.topic}" />
+					</p:column>
+					<p:column headerText="Data">
+						<h:outputText value="#{messsage.date}" />
+					</p:column>
+
+					<p:column style="width:32px;text-align: center">
+						<p:commandButton 
+							oncomplete="PF('carDialog').show()" icon="ui-icon-search"
+							title="Szczegoly">
+	
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				</p:panel>
+				</div>
+
+	</ui:define>
 
 
 </ui:composition>
