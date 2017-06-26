@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/pages/templates/template.xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/pages/templates/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html">
 
-	<ui:define name="head-end">
-		<style type="text/css">
-.ui-datatable .ui-datatable-header {
-	text-align: right !important;
-}
-</style>
-	</ui:define>
+        <ui:define name="head-end">
+        <style type="text/css">
+            .ui-datatable .ui-datatable-header {
+                text-align: right !important;
+            }
 
-	<ui:define name="title">
+        </style>
+    </ui:define>
+
+    <ui:define name="title">
         #{msg['page.index.title']}
     </ui:define>
 
-	<ui:define name="description">
+    <ui:define name="description">
         #{msg['page.index.description']}
     </ui:define>
 
-	<ui:define name="body">
-		<!-- p:growl id="growl" showDetail="true" sticky="false" /-->
-		<h:form id="myForm">
-			<!-- p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /-->
+    <ui:define name="body">
+    	<h3 style="margin-top: 0">Wydarzenia</h3>
+    	<p:timeline id="timelineFirst" value="#{linkedTimelinesView.modelFirst}" var="task" 
+                height="250px" widgetVar="timelineFirstWdgt">  
+        <p:ajax event="rangechange" oncomplete="onrangechange1()"/>  
+        <p:ajax event="select" listener="#{linkedTimelinesView.onSelect}"/>  
  
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<div id="main-buttons" class="hidden-sm hidden-xs">
-						<p:spacer width="5" />
-						<p:commandButton id="my-button" value="Delete Selected" icon="fa fa-trash"
-							styleClass="btn-danger" action="#{jezyk.showMsg}"
-							update="myForm"/>
-						<p:spacer width="5" />
-					</div>
-				</div>
-			</div>
-		</h:form>
-	</ui:define>
+        <h:panelGroup layout="block" rendered="#{not task.period}" style="padding-bottom:5px">  
+            <h:outputText value="#{task.title}"/>  
+        </h:panelGroup>  
+        <p:graphicImage library="demo" name="#{task.imagePath}"/>  
+        <h:panelGroup rendered="#{task.period}" style="padding:8px">  
+            <h:outputText value="#{task.title}"/>  
+        </h:panelGroup>  
+    </p:timeline>
+    </ui:define>
 
 
 </ui:composition>
