@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/pages/templates/template.xhtml"
-                xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/pages/templates/template.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-        <ui:define name="head-end">
-        <style type="text/css">
-            .ui-datatable .ui-datatable-header {
-                text-align: right !important;
-            }
+	<ui:define name="head-end">
+		<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	text-align: right !important;
+}
+</style>
+	</ui:define>
 
-        </style>
-    </ui:define>
-
-    <ui:define name="title">
+	<ui:define name="title">
         #{msg['page.index.title']}
     </ui:define>
 
-    <ui:define name="description">
+	<ui:define name="description">
         #{msg['page.index.description']}
     </ui:define>
 
-    <ui:define name="body">
-    	
-    </ui:define>
+	<ui:define name="body">
+		<!-- p:growl id="growl" showDetail="true" sticky="false" /-->
+		<h:form id="myForm">
+			<!-- p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /-->
+ 
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<div id="main-buttons" class="hidden-sm hidden-xs">
+						<p:spacer width="5" />
+						<p:commandButton id="my-button" value="Delete Selected" icon="fa fa-trash"
+							styleClass="btn-danger" action="#{jezyk.showMsg}"
+							update="myForm"/>
+						<p:spacer width="5" />
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
 
 
 </ui:composition>

@@ -33,9 +33,11 @@ public class ZmianaJezyka implements Serializable
   public void buttonAction(ActionEvent actionEvent)
   {
     addMessage("Welcome to Primefaces!!");
-    setLanguage("sad");
+    //setLanguage("sad");
   }
-
+  public void showMsg(){
+	  addMessage("Welcome to Primefaces!!");
+  }
   public void addMessage(String summary)
   {
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,summary,null);
