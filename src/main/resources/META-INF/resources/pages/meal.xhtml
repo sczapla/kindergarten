@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/pages/templates/template.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="head-end">
+		<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	text-align: right !important;
+}
+</style>
+	</ui:define>
+
+	<ui:define name="title">
+        #{msg['page.meal.title']}
+    </ui:define>
+
+	<ui:define name="description">
+        #{msg['page.meal.description']}
+    </ui:define>
+
+	<ui:define name="body">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+
+				<p:accordionPanel multiple="true">
+					<p:tab title="Śniadanie" titleStyleClass="box-success"
+						closable="true">
+						<h:panelGrid columns="2" cellpadding="10">
+
+							<h:outputText
+								value="Chleb z masłem i pieczonymi kiełbaskami. Sałatka z pomidorów. Cherbata." />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="II śniadanie" titleStyleClass="box-success">
+						<h:panelGrid columns="2" cellpadding="10">
+							<h:outputText value="Jogurt typu greckiego z owocami." />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Obiad" titleStyleClass="box-success">
+						<h:panelGrid columns="2" cellpadding="10">
+							<h:outputText
+								value="Zupa ogórkowa. Schab pieczony ze śliwką. rzymska sałata. Kompot" />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Podwieczorek" titleStyleClass="box-success">
+						<p:panel id="custom" header="Custom Actions">
+							<h:panelGrid columns="2" cellpadding="10">
+								<p:graphicImage name="demo/images/godfather3.jpg" />
+								<h:outputText value="After a break of more than 15 years..." />
+							</h:panelGrid>
+
+							<f:facet name="actions">
+								<h:commandLink
+									styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+									<h:outputText styleClass="ui-icon ui-icon-help" />
+								</h:commandLink>
+								<h:commandLink
+									styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default">
+									<h:outputText styleClass="ui-icon ui-icon-star" />
+								</h:commandLink>
+							</f:facet>
+						</p:panel>
+					</p:tab>
+				</p:accordionPanel>
+
+			</div>
+		</div>
+	</ui:define>
+
+
+</ui:composition>
