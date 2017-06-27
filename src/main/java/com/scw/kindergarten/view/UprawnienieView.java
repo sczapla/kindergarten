@@ -1,8 +1,6 @@
 package com.scw.kindergarten.view;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -15,9 +13,6 @@ import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
 import com.scw.kindergarten.model.Uprawnienie;
 import com.scw.kindergarten.repository.UprawnienieRepository;
 import com.scw.kindergarten.view.utils.Utils;
