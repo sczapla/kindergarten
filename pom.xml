@@ -147,6 +147,12 @@
 			</properties>
 		</profile>
 		<profile>
+			<id>heroku</id>
+			<properties>
+				<build.profile.id>heroku</build.profile.id>
+			</properties>
+		</profile>
+		<profile>
 			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
