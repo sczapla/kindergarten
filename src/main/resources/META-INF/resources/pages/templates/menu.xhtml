@@ -10,21 +10,21 @@
 				<i class="fa fa-home"></i>
 				<span>Pulpit</span>
 			</p:link></li>
-		<li><p:link href="/pages/exception/exception.xhtml">
+		<li><p:link href="/pages/mails.xhtml">
 				<i class="fa fa-stack-overflow"></i>
-				<span>Wiadomości</span>
+				<span>#{msg['menu.mails']}</span>
 			</p:link></li>
 		<li><p:link href="/pages/schedule.xhtml">
 				<i class="fa fa-stack-overflow"></i>
-				<span>Rozkład dnia</span>
+				<span>#{msg['menu.schedule']}</span>
 			</p:link></li>
-		<li><p:link href="/pages/exception/exception.xhtml">
+		<li><p:link href="/pages/meal.xhtml">
 				<i class="fa fa-stack-overflow"></i>
-				<span>Co dziś jemy</span>
+				<span>#{msg['menu.meal']}</span>
 			</p:link></li>
-		<li><p:link href="/pages/exception/exception.xhtml">
+		<li><p:link href="/pages/absence.xhtml">
 				<i class="fa fa-stack-overflow"></i>
-				<span>Zgłoś nieobecność</span>
+				<span>#{msg['menu.absence']}</span>
 			</p:link></li>
 
 		<li class="treeview"><a href="#"> <i class="fa fa-plug"></i>
@@ -43,6 +43,11 @@
 						title="#{msg['menu.admin.roles.title']}">
 						<i class="fa fa-user-circle-o"></i>
 						<span>#{msg['menu.admin.roles']}</span>
+					</p:link></li>
+				<li><p:link href="/pages/permission.xhtml"
+						title="#{msg['menu.admin.permission.title']}">
+						<i class="fa fa-user-circle-o"></i>
+						<span>#{msg['menu.admin.permission']}</span>
 					</p:link></li>
 				<li><p:link href="/pages/dict.xhtml"
 						title="#{msg['menu.admin.dict.title']}">

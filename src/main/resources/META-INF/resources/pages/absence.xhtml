@@ -15,11 +15,11 @@
 	</ui:define>
 
 	<ui:define name="title">
-        #{msg['page.meal.title']}
+        #{msg['page.absence.title']}
     </ui:define>
 
 	<ui:define name="description">
-        #{msg['page.meal.description']}
+        #{msg['page.absence.description']}
     </ui:define>
 
 	<ui:define name="body">
@@ -27,7 +27,8 @@
 			<div class="box-header with-border">
 
 				<p:schedule id="scheduleLocale" value="#{absenceView.eventModel}"
-					locale="pl" view="agendaWeek" showWeekends="false" allDaySlot="true" firstHour="12">
+					locale="pl" view="month" showWeekends="false" allDaySlot="true" firstHour="12" 
+					timeZone="Europe/Warsaw" rightHeaderTemplate="month">
 					<p:ajax event="dateSelect" listener="#{absenceView.onDateSelect}"
 						update="eventDetails" oncomplete="PF('eventDialog').show();" />
 					<p:ajax event="eventSelect"	listener="#{absenceView.onEventSelect}" update="eventDetails"

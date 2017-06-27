@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="./templates/template.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:adm="http://github.com/adminfaces"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="head-end">
+		<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	text-align: right !important;
+}
+</style>
+	</ui:define>
+
+	<ui:define name="title">
+        #{msg['page.permission.title']}
+    </ui:define>
+
+	<ui:define name="description">
+        #{msg['page.permission.description']}
+    </ui:define>
+
+	<ui:define name="body">
+		<h:form id="permission">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<div id="main-buttons" class=" hidden-sm hidden-xs">
+						<p:commandButton id="perAddButton" oncomplete="PF('newPermissionDialog').show()"
+							icon="fa fa-plus" value="#{msg['button.add']}" styleClass="btn-primary" />
+						<p:spacer width="10"/>
+                        <p:commandButton id="perDelButton" value="#{msg['button.delete']}" icon="fa fa-trash" styleClass="btn-danger"
+                                         actionListener="#{uprawnienieView.clear}"
+                                         disabled="#{uprawnienieView.selectedPermissionNode eq null or empty uprawnienieView.selectedPermissionNode}"
+                                         update="permissionTree"
+                        />
+							
+					</div>
+					<p:separator />
+					<p:treeTable id="permissionTree" value="#{uprawnienieView.root}" selectionMode="checkbox" selection="#{uprawnienieView.selectedPermissionNode}"
+						editable="true" var="permission" style="margin-bottom:20px">
+						
+						<p:ajax event="rowEdit" listener="#{uprawnienieView.permissionEdit}" update="permissionTree" />
+						<p:ajax event="rowEditCancel" listener="#{uprawnienieView.permissionEditCancel}" update="permissionTree" />
+						<p:ajax event="select" update="@(.ui-button)"/>
+                        <p:ajax event="unselect" update="@(.ui-button)"/>
+
+						<p:column headerText="#{msg['permission.name']}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{permission.nazwaUprawnienia}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{permission.nazwaUprawnienia}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msg['permission.component']}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{permission.komponent}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{permission.komponent}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column style="width:32px">
+							<!-- p:commandLink title="#{msg['button.delete']}" styleClass="ui-icon ui-icon-trash" icon="fa fa-trash">
+								<f:setPropertyActionListener value="#{permission}" update="permissionTree"
+									target="#{uprawnienieView.delete}" />
+							</p:commandLink-->
+							<p:rowEditor editTitle="#{msg['button.edit']}"/>
+						</p:column>
+					</p:treeTable>
+
+					<p:dialog id="perDial" header="#{msg['permission.new']}" showEffect="fade"
+						widgetVar="newPermissionDialog" modal="true" resizable="false">
+						<p:outputPanel id="newPermissionPanel">
+							<div class="ui-g ui-fluid">
+								<div class="ui-g-12">
+									<p:outputLabel value="#{msg['permission.name']}:" for="perName" />
+								</div>
+								<div class="ui-g-12">
+									<p:inputText id="perName"
+										value="#{uprawnienieView.perName}"
+										required="true" requiredMessage="#{msg['required.empty']}" />
+
+									<p:message id="perNameMsg" for="perName" />
+								</div>
+								<div class="ui-g-12">
+									<p:outputLabel value="#{msg['permission.component']}:" for="perComp" />
+								</div>
+								<div class="ui-g-12">
+									<p:inputText id="perComp"
+										value="#{uprawnienieView.perComp}"
+										required="true" requiredMessage="#{msg['required.empty']}">
+
+									</p:inputText>
+									<p:message id="perCompMsg" for="perComp" />
+								</div>
+
+							</div>
+							<p:separator />
+							<div id="save-buttons" class="hidden-sm hidden-xs">
+								<p:commandButton icon="fa fa-plus" value="#{msg['button.save']}"
+									styleClass="btn-danger btn-primary" process="newPermissionPanel"
+									update="newPermissionPanel"
+									actionListener="#{uprawnienieView.save}" 
+									oncomplete="if (args &amp;&amp; !args.validationFailed) PF('newPermissionDialog').hide()"/>
+								<p:spacer width="10"/>
+								<p:commandButton icon="fa fa-close" value="#{msg['button.clear']}"
+									styleClass="btn-primary" update="newPermissionPanel"
+									actionListener="#{uprawnienieView.clear}" />
+								<p:spacer width="10"/>
+								<p:commandButton onclick="PF('newPermissionDialog').hide()"
+									icon="fa fa-backward" value="#{msg['button.cancel']}" styleClass=" btn-default" />
+							</div>
+
+						</p:outputPanel>
+					</p:dialog>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

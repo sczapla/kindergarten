@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
@@ -19,10 +18,14 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
+import org.springframework.stereotype.Component;
 
-@ManagedBean
+@Component("scheduleView")
 @ViewScoped
 public class ScheduleView implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private ScheduleModel eventModel;
     
     private ScheduleModel lazyEventModel;
