@@ -15,27 +15,17 @@
 	</ui:define>
 
 	<ui:define name="title">
-        #{msg['page.mail.title']}
+        #{msg['page.payment.title']}
     </ui:define>
 
 	<ui:define name="description">
-        #{msg['page.mail.description']}
+        #{msg['page.payment.description']}
     </ui:define>
 
 	<ui:define name="body">
 		<div class="box box-primary">
 			<div class="box-header with-border">
 			<h:form>
-					<div id="main-buttons" class=" hidden-sm hidden-xs">
-						<p:commandButton id="perAddButton" oncomplete="PF('composeDlg').show()"
-							icon="fa fa-plus" value="#{msg['button.add']}" styleClass="btn-primary" />
-						<p:spacer width="10"/>
-                        <p:commandButton id="perDelButton" value="#{msg['button.delete']}" icon="fa fa-trash" styleClass="btn-danger"
-                                         actionListener="#{messageView.clear}"
-                                         
-                        />
-							
-					</div>
 					<p:separator />
 
                     <p:dataTable widgetVar="msgTable" var="message" value="#{messageView.messages}" rows="5"
@@ -94,34 +84,7 @@
                             </p:commandButton>
 						</p:column>
                     </p:dataTable>
-                    
 
-				<p:dialog widgetVar="composeDlg" modal="true"
-					header="Nowa wiadomość" width="530" showEffect="fade"
-					hideEffect="fade">
-					<h:form>
-						<h:panelGrid columns="2" cellspacing="5">
-							<h:outputLabel for="to" value="Do: " />
-							<p:inputText id="to"/>
-
-							<h:outputLabel for="cc" value="CC: " />
-							<p:inputText id="cc" />
-
-							<h:outputLabel for="subject" value="Temat: " />
-							<p:inputText id="subject" size="50" />
-						</h:panelGrid>
-						<p:separator />
-						<p:editor widgetVar="editor" />
-						<p:separator />
-						<p:commandButton value="Wyślij" onclick="PF('composeDlg').hide()"
-							actionListener="#{messageView.send}"
-							process="@this" />
-						<p:commandButton value="Anuluj" onclick="PF('composeDlg').hide()"
-							type="button" />
-
-					</h:form>
-
-				</p:dialog>
 				</h:form>
 			</div>
 		</div>
