@@ -1,0 +1,75 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="twojcicki (generated)" id="1499865969689-1">
+        <createTable tableName="grupa">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="grupaPK"/>
+            </column>
+            <column name="nazwa" type="VARCHAR(255)"/>
+            <column name="opis" type="VARCHAR(255)"/>
+            <column name="organizacja_id" type="INT"/>
+            <column name="typ_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-2">
+        <createTable tableName="organizacja">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="organizacjaPK"/>
+            </column>
+            <column name="nazwa" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nip" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-3">
+        <createTable tableName="typ_grupy">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="typ_grupyPK"/>
+            </column>
+            <column name="nazwa" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opis" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="organizacja_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-4">
+        <addColumn tableName="uzytkownik">
+            <column name="grupa_id" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-5">
+        <addColumn tableName="uzytkownik">
+            <column name="organizacja_id" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-6">
+        <addUniqueConstraint columnNames="id" constraintName="UC_GRUPAID_COL" tableName="grupa"/>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-7">
+        <addUniqueConstraint columnNames="id" constraintName="UC_ORGANIZACJAID_COL" tableName="organizacja"/>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-8">
+        <addUniqueConstraint columnNames="id" constraintName="UC_TYP_GRUPYID_COL" tableName="typ_grupy"/>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-9">
+        <addForeignKeyConstraint baseColumnNames="typ_id" baseTableName="grupa" constraintName="FK5aty0qj0gb29bq6fo87wgm71" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="typ_grupy"/>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-10">
+        <addForeignKeyConstraint baseColumnNames="organizacja_id" baseTableName="uzytkownik" constraintName="FK8pfj9neflrrr54jk3rl96f3ju" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="organizacja"/>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-11">
+        <addForeignKeyConstraint baseColumnNames="organizacja_id" baseTableName="grupa" constraintName="FKctwsnudmoj1jcg6x76g574so2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="organizacja"/>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-12">
+        <addForeignKeyConstraint baseColumnNames="organizacja_id" baseTableName="typ_grupy" constraintName="FKdi1q4hliojijivqp1el280iu2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="organizacja"/>
+    </changeSet>
+    <changeSet author="twojcicki (generated)" id="1499865969689-13">
+        <addForeignKeyConstraint baseColumnNames="grupa_id" baseTableName="uzytkownik" constraintName="FKqeq61ob920x6timp1rmeg90ws" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="grupa"/>
+    </changeSet>
+</databaseChangeLog>

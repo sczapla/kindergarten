@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,6 +30,8 @@ public class Uzytkownik implements Serializable {
 	private String opis;
 	private Boolean odblokowany;
 	private Date czasRejestracji;
+	private Organizacja organizacja;
+	private Grupa grupa;
 	private Set<Rola> rola = new HashSet<>(0);
 
 	@Column(name = "haslo", nullable = false, length = 64)
@@ -94,6 +97,26 @@ public class Uzytkownik implements Serializable {
 
 	public void setNazwisko(String nazwisko) {
 		this.nazwisko = nazwisko;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organizacja_id")
+	public Organizacja getOrganizacja() {
+		return organizacja;
+	}
+
+	public void setOrganizacja(Organizacja organizacja) {
+		this.organizacja = organizacja;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "grupa_id")
+	public Grupa getGrupa() {
+		return grupa;
+	}
+
+	public void setGrupa(Grupa grupa) {
+		this.grupa = grupa;
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
